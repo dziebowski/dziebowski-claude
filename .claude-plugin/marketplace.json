@@ -1,0 +1,21 @@
+{
+  "name": "dziebowski-claude",
+  "owner": {
+    "name": "Mariusz Dziębowski"
+  },
+  "metadata": {
+    "description": "Personal Claude Code skills and hooks"
+  },
+  "plugins": [
+    {
+      "name": "dziebowski-skills",
+      "source": "./plugins/dziebowski-skills",
+      "description": "Personal skills, usable in Claude Code and claude.ai"
+    },
+    {
+      "name": "dziebowski-hooks",
+      "source": "./plugins/dziebowski-hooks",
+      "description": "Personal Claude Code hooks"
+    }
+  ]
+}

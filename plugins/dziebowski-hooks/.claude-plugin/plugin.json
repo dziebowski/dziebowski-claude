@@ -1,0 +1,9 @@
+{
+  "name": "dziebowski-hooks",
+  "version": "0.1.0",
+  "description": "Personal Claude Code hooks",
+  "author": {
+    "name": "Mariusz Dziębowski"
+  },
+  "license": "MIT"
+}

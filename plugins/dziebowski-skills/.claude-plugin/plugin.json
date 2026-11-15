@@ -1,0 +1,9 @@
+{
+  "name": "dziebowski-skills",
+  "version": "0.1.0",
+  "description": "Personal skills, usable in Claude Code and claude.ai",
+  "author": {
+    "name": "Mariusz Dziębowski"
+  },
+  "license": "MIT"
+}
