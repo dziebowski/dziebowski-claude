@@ -9,6 +9,13 @@ Prywatny marketplace pluginów Claude Code — jedno miejsce na moje skille i ho
 | `dziebowski-skills` | skille (działają w Claude Code, claude.ai i Cowork) | `/dziebowski-skills:<nazwa>` |
 | `dziebowski-hooks` | hooki (tylko Claude Code i Cowork) | automatycznie |
 
+## Skille
+
+| Skill | Do czego |
+|---|---|
+| `hello` | sprawdzenie, czy plugin działa |
+| `task-title` | tytuł taska/issue/PR nazywający efekt zmiany, poprawny bez zmian w trackerze, changelogu i temacie commita |
+
 ## Struktura
 
 ```
