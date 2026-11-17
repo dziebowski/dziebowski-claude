@@ -14,7 +14,7 @@ Prywatny marketplace pluginów Claude Code — jedno miejsce na moje skille i ho
 | Skill | Do czego |
 |---|---|
 | `hello` | sprawdzenie, czy plugin działa |
-| `task-title` | tytuł taska/issue/PR nazywający efekt zmiany, poprawny bez zmian w trackerze, changelogu i temacie commita |
+| `task-title` | tytuł taska/issue/PR nazywający weryfikowalny efekt zmiany, poprawny bez zmian w trackerze, changelogu i temacie commita |
 
 ## Struktura
 
