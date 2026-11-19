@@ -15,6 +15,7 @@ Prywatny marketplace pluginów Claude Code — jedno miejsce na moje skille i ho
 |---|---|
 | `hello` | sprawdzenie, czy plugin działa |
 | `task-title` | tytuł taska/issue/PR nazywający weryfikowalny efekt zmiany, poprawny bez zmian w trackerze, changelogu i temacie commita |
+| `task-description` | treść zadania do trackera (cel, historyjka, kryteria akceptacji) opisująca efekt, przycięta do jednego plastra; tryb dla projektów regulowanych (SLR/SI/SU, bezpieczeństwo) |
 
 ## Struktura
 
