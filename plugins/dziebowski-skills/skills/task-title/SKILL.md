@@ -3,62 +3,62 @@ name: task-title
 description: Write or refine the title of a development task, issue or PR so it names a verifiable outcome and reads correctly unchanged in trackers, changelogs and commit subjects. Use when the user asks to name, title or rename a task, issue or PR; when you are about to create or rename one yourself in any tracker (ClickUp, GitHub, GitLab, ...); or when another skill needs a task title.
 ---
 
-# Task title
+# Tytuł zadania
 
-A task title is a **core**: one plain line naming the **outcome** the change brings, with no prefixes. The outcome is **verifiable**: after release, anyone reading only the title can check whether the work does what it promised. The same core is reused unchanged as the tracker task name, the issue or PR title, the changelog entry and the commit subject. Project conventions only add prefixes (type, ID, scope) around it.
+Tytuł zadania to **rdzeń**: jedna zwykła linia nazywająca **wynik**, który przynosi zmiana, bez prefiksów. Wynik jest **sprawdzalny**: po wydaniu każdy, kto czyta tylko tytuł, może sprawdzić, czy praca robi to, co obiecała. Ten sam rdzeń służy bez zmian jako nazwa zadania w trackerze, tytuł issue lub PR, wpis w changelogu i temat commita. Konwencje projektu dodają wokół niego tylko prefiksy (typ, ID, scope).
 
-## Steps
+## Kroki
 
-1. **Gather.** Collect the raw title and everything describing the task: the user's text, and the task itself when given a link or ID and a tracker tool is available. Read the project's conventions (CLAUDE.md, AGENTS.md, project instructions): title format, prefixes, language, form overrides. Conventions override the defaults in this skill. When running inside a repository and the outcome is unclear from the text, dispatch a subagent to find the affected area and the product's domain vocabulary (glossary, UI labels, docs). Done when you know what changes and for whom.
-2. **Diagnose.** Name the **type** (feature, fix, engineering) and the **outcome**: what the user or the engineer gains; for a fix, the problem that stops happening. Look facts up yourself; put only decisions to the user, such as what the benefit is or which part matters. Ask nothing when both are clear. Then phrase the **check question**: a yes/no question about the shipped product that the outcome answers ("Czy faktury eksportują się do CSV?", "Does the CI build finish under 5 minutes?"). When no such question exists, the outcome is still vague: find the observable end state, or ask the user what "done" looks like. Done when type, a single outcome and its check question are named.
-3. **Check size.** A task carrying several independent outcomes should be split. Signals: "and" joining two results, independent changes across several modules or layers, parts with value of their own, more than one PR's worth of work. Propose the split as a list of subtasks, each with its core title and one sentence, and ask whether to title the whole task or a chosen part. Leave creating subtasks to the user. Skip this step when another skill invoked this one: the caller owns the task's scope.
-4. **Write** the core following Form and Rules, then check the candidate against every rule.
-5. **Deliver** (see Output). Write to the tracker only after the user approves, changing the title alone.
+1. **Zbierz.** Zbierz surowy tytuł i wszystko, co opisuje zadanie: tekst użytkownika, a gdy dostajesz link lub ID i dostępne jest narzędzie trackera, samo zadanie. Przeczytaj konwencje projektu (CLAUDE.md, AGENTS.md, instrukcje projektu): format tytułu, prefiksy, język, nadpisania formy. Konwencje nadpisują domyślne ustawienia tego skilla. Gdy pracujesz w repozytorium, a wynik nie jest jasny z tekstu, wyślij subagenta, by znalazł obszar zmiany i słownictwo domeny produktu (glosariusz, etykiety UI, dokumentację). Gotowe, gdy wiesz, co się zmienia i dla kogo.
+2. **Zdiagnozuj.** Nazwij **typ** (feature, fix, engineering) i **wynik**: co zyskuje użytkownik lub inżynier; w fixie problem, który przestaje występować. Fakty sprawdzaj sam; użytkownikowi zadawaj tylko decyzje, np. jaka jest korzyść albo która część jest ważna. Nie pytaj o nic, gdy oba są jasne. Potem sformułuj **pytanie kontrolne**: pytanie tak/nie o wydany produkt, na które odpowiada wynik („Czy faktury eksportują się do CSV?”, "Does the CI build finish under 5 minutes?"). Gdy takiego pytania nie ma, wynik jest wciąż mglisty: znajdź obserwowalny stan końcowy albo zapytaj użytkownika, jak wygląda „gotowe”. Gotowe, gdy typ, jeden wynik i jego pytanie kontrolne są nazwane.
+3. **Sprawdź rozmiar.** Zadanie niosące kilka niezależnych wyników powinno zostać podzielone. Sygnały: „i” łączące dwa rezultaty, niezależne zmiany w kilku modułach lub warstwach, części mające wartość same w sobie, więcej niż jeden PR pracy. Zaproponuj podział jako listę podzadań, każde z rdzeniem tytułu i jednym zdaniem, i zapytaj, czy zatytułować całe zadanie, czy wybraną część. Tworzenie podzadań zostaw użytkownikowi. Pomiń ten krok, gdy ten skill wywołał inny skill: zakres zadania należy do wywołującego.
+4. **Napisz** rdzeń według *Formy* i *Zasad*, potem sprawdź kandydata każdą zasadą.
+5. **Dostarcz** (zob. *Wynik*). Do trackera zapisuj dopiero po akceptacji użytkownika, zmieniając wyłącznie tytuł.
 
-## Form
+## Forma
 
-The form is **timeless**: correct before the work starts (task list) and after it ships (changelog).
+Forma jest **ponadczasowa**: poprawna przed rozpoczęciem pracy (lista zadań) i po wydaniu (changelog).
 
-**Polish**: verbal noun (rzeczownik odczasownikowy) plus the concrete outcome. Pick the shortest noun that carries the meaning: "Obsługa X" over "Dodanie obsługi X", "Eksport" over "Dodanie możliwości eksportu".
-- feature: "Eksport faktur do CSV", "Obsługa logowania przez Google"
-- engineering: "Skrócenie czasu buildu CI dzięki cache zależności"
-- fix: the **target state**, what works correctly now: "Poprawne naliczanie sum na fakturach z rabatem". When the target state has no short name, name the removed symptom: "Wyeliminowanie zawyżania sum na fakturach z rabatem".
+**Polski**: rzeczownik odczasownikowy plus konkretny wynik. Wybierz najkrótszy rzeczownik, który niesie znaczenie: „Obsługa X” zamiast „Dodanie obsługi X”, „Eksport” zamiast „Dodanie możliwości eksportu”.
+- feature: „Eksport faktur do CSV”, „Obsługa logowania przez Google”
+- engineering: „Skrócenie czasu buildu CI dzięki cache zależności”
+- fix: **stan docelowy**, co teraz działa poprawnie: „Poprawne naliczanie sum na fakturach z rabatem”. Gdy stan docelowy nie ma krótkiej nazwy, nazwij usunięty objaw: „Wyeliminowanie zawyżania sum na fakturach z rabatem”.
 
-Imperative ("Dodaj") reads as an order in a changelog, and past tense ("Dodano") claims completion on a task list; the verbal noun fits both.
+Tryb rozkazujący („Dodaj”) czyta się w changelogu jak polecenie, a czas przeszły („Dodano”) na liście zadań twierdzi, że praca jest skończona; rzeczownik odczasownikowy pasuje do obu.
 
-The verbal noun must name a **result or capability**, never an open-ended process. Prefer nouns from perfective verbs, which name a reached result ("skrócenie", "wyeliminowanie"), or capability nouns ("obsługa", "eksport", "wyszukiwanie po X"). Process nouns with no end state ("optymalizacja", "usprawnienie", "poprawa", "refaktoryzacja", "skracanie") are untestable alone: "Usprawnienie wyszukiwania" has no check, "Wyszukiwanie faktur po NIP" has one. Use them only with the measurable end attached: "Skrócenie ładowania listy zamówień do 1 s".
+Rzeczownik odczasownikowy musi nazywać **rezultat lub możliwość**, nigdy otwarty proces. Wybieraj rzeczowniki od czasowników dokonanych, które nazywają osiągnięty rezultat („skrócenie”, „wyeliminowanie”), albo rzeczowniki możliwości („obsługa”, „eksport”, „wyszukiwanie po X”). Rzeczowniki procesu bez stanu końcowego („optymalizacja”, „usprawnienie”, „poprawa”, „refaktoryzacja”, „skracanie”) same w sobie są niesprawdzalne: „Usprawnienie wyszukiwania” nie ma sprawdzenia, „Wyszukiwanie faktur po NIP” ma. Używaj ich tylko z dołączonym mierzalnym końcem: „Skrócenie ładowania listy zamówień do 1 s”.
 
-**English**: imperative, the convention of git and changelogs, where it reads as the name of the change.
+**Angielski**: tryb rozkazujący, konwencja gita i changelogów, w której czyta się jak nazwa zmiany.
 - feature: "Add CSV export for invoices"
 - engineering: "Cut CI build time by caching dependencies"
-- fix: "Fix" plus the observable symptom: "Fix inflated totals on discounted invoices"
+- fix: "Fix" plus obserwowalny objaw: "Fix inflated totals on discounted invoices"
 
-**Other languages**: the form that language's professional software writing uses, provided it stays timeless.
+**Inne języki**: forma, której używa profesjonalne pisanie o oprogramowaniu w danym języku, o ile pozostaje ponadczasowa.
 
-**Engineering tasks** (refactoring, CI, dependencies, docs) name the benefit to engineers, never the activity: "Skrócenie czasu buildu CI…", where "Refaktor pipeline'u" names only the work. When no benefit can be named, ask: the purpose of the task is unclear.
+**Zadania inżynierskie** (refaktoryzacja, CI, zależności, dokumentacja) nazywają korzyść dla inżynierów, nigdy czynność: „Skrócenie czasu buildu CI…”, podczas gdy „Refaktor pipeline'u” nazywa tylko pracę. Gdy nie da się nazwać korzyści, zapytaj: cel zadania jest niejasny.
 
-**Fixes** name the problem solved, as the user observes it. The code change belongs in the description: "Poprawne naliczanie sum na fakturach z rabatem", where "Zmiana zaokrąglania w calcTotal" names only the change.
+**Fixy** nazywają rozwiązany problem tak, jak widzi go użytkownik. Zmiana w kodzie należy do opisu: „Poprawne naliczanie sum na fakturach z rabatem”, podczas gdy „Zmiana zaokrąglania w calcTotal” nazywa tylko zmianę.
 
-## Rules
+## Zasady
 
-- At most ~72 characters.
-- Plain text: no trailing period, markdown or emoji.
-- The product's domain vocabulary, the words its users and team use. File, class and function names stay in the description. In engineering tasks the team's technical terms (tools, components such as `node_modules` or a CI cache) are that vocabulary and may stay in the title.
-- Concrete words naming what changes. A broad verb ("improve", "update", "usprawnienie", "aktualizacja") stays only with the concrete what attached.
-- Self-contained: understandable on its own, without other tasks or past discussions ("part 2", "as agreed" break this).
-- One outcome.
-- Verifiable: the title turns into the check question without adding information. Name the measure (time, scope, case) when it is the point of the task and fits; exact thresholds that don't fit, edge cases and full acceptance criteria belong in the description.
-- Language: the language of the input task, unless conventions set one.
+- Najwyżej ~72 znaki.
+- Zwykły tekst: bez kropki na końcu, markdownu i emoji.
+- Słownictwo domeny produktu, czyli słowa, których używają jego użytkownicy i zespół. Nazwy plików, klas i funkcji zostają w opisie. W zadaniach inżynierskich techniczne terminy zespołu (narzędzia, komponenty takie jak `node_modules` czy cache CI) są tym słownictwem i mogą zostać w tytule.
+- Konkretne słowa nazywające to, co się zmienia. Szeroki czasownik („usprawnienie”, „aktualizacja”, "improve", "update") zostaje tylko z dołączonym konkretnym „co”.
+- Samodzielny: zrozumiały sam w sobie, bez innych zadań czy wcześniejszych dyskusji („część 2”, „jak ustalono” to łamią).
+- Jeden wynik.
+- Sprawdzalny: tytuł zamienia się w pytanie kontrolne bez dodawania informacji. Nazwij miarę (czas, zakres, przypadek), gdy jest sednem zadania i się mieści; dokładne progi, które się nie mieszczą, przypadki brzegowe i pełne kryteria akceptacji należą do opisu.
+- Język: język zadania wejściowego, chyba że konwencje ustalają inny.
 
-## Output
+## Wynik
 
-Answer in the conversation's language:
+Odpowiedz w języku rozmowy:
 
-- the recommended core title, in bold,
-- type: feature / fix / engineering,
-- the check question, so the user can confirm the title is testable,
-- the full title with prefixes, only when conventions define them,
-- 1–2 alternatives, only when a genuinely different framing exists,
-- one sentence explaining the choice.
+- rekomendowany rdzeń tytułu, pogrubiony,
+- typ: feature / fix / engineering,
+- pytanie kontrolne, by użytkownik mógł potwierdzić, że tytuł jest sprawdzalny,
+- pełny tytuł z prefiksami, tylko gdy konwencje je definiują,
+- 1–2 alternatywy, tylko gdy istnieje naprawdę inne ujęcie,
+- jedno zdanie wyjaśniające wybór.
 
-When another skill invoked this one, return only the core title, type and check question.
+Gdy ten skill wywołał inny skill, zwróć tylko rdzeń tytułu, typ i pytanie kontrolne.

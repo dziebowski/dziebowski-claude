@@ -1,32 +1,32 @@
-# Regulated project
+# Projekt regulowany
 
-Part of the [`task-description`](SKILL.md) skill for projects that require traceability (e.g. under IEC 62304) or keep their own list of safety functions and risks. It extends the *Links* and *Safety* sections; the project's convention (identifiers, placeholders, format) overrides this file.
+Część skilla [`task-description`](SKILL.md) dla projektów wymagających traceability (np. według IEC 62304) albo prowadzących własną listę funkcji bezpieczeństwa i ryzyk. Rozszerza sekcje *Powiązania* i *Bezpieczeństwo*; konwencja projektu (identyfikatory, placeholdery, format) nadpisuje ten plik.
 
-## Links
+## Powiązania
 
-One line in the description:
+Jedna linia w opisie:
 
 `SLR: <id> · SI: <id> · SU: <id>`
 
-- **SLR** (System Level Requirement): the system requirement the task derives from. Always present.
-- **SI** (Software Item): the software item, when the change concerns a whole module or component.
-- **SU** (Software Unit): the software unit, when the change concerns a separate unit inside a module.
-- SI and SU together when the task creates a new SU in an existing SI.
+- **SLR** (System Level Requirement): wymaganie systemowe, z którego wynika zadanie. Zawsze obecne.
+- **SI** (Software Item): element oprogramowania, gdy zmiana dotyczy całego modułu lub komponentu.
+- **SU** (Software Unit): jednostka oprogramowania, gdy zmiana dotyczy wyodrębnionej jednostki wewnątrz modułu.
+- SI i SU razem, gdy zadanie tworzy nową SU w istniejącym SI.
 
-Identifiers:
+Identyfikatory:
 
-- Write only identifiers given by the user or read from the repository or the tracker.
-- Record a missing identifier of an existing element as `?` and ask about it in the note. Such a traceability gap stays visible in the content until someone closes it.
-- An element the task is only creating gets a placeholder from the project's convention (e.g. `PRJ-SU-????`). The number is assigned during implementation, following the project's rules.
+- Wpisuj tylko identyfikatory podane przez użytkownika albo odczytane z repozytorium lub trackera.
+- Brakujący identyfikator istniejącego elementu zapisz jako `?` i zapytaj o niego w notatce. Taka luka w traceability zostaje widoczna w treści, dopóki ktoś jej nie zamknie.
+- Element, który zadanie dopiero tworzy, dostaje placeholder z konwencji projektu (np. `PRJ-SU-????`). Numer nadaje się w trakcie implementacji, według zasad projektu.
 
-Several SUs in one task are a size signal, like several domains: check that the task carries one slice.
+Kilka SU w jednym zadaniu to sygnał rozmiaru, jak kilka domen: sprawdź, czy zadanie niesie jeden wycinek.
 
-## Safety
+## Bezpieczeństwo
 
-The section names what the task touches and the required verification:
+Sekcja nazywa to, czego zadanie dotyka, i wymaganą weryfikację:
 
-- **Safety function** or **risk control measure**: name and identifier from the project's risk analysis (when the project keeps one), and the impact of the change (new measure, change to an existing one, change to its surroundings).
-- **SOUP item**: a new external library or a version change of an existing one. Name, version, reason for the choice. A new SOUP item needs an assessment and an entry on the project's SOUP list before it reaches the code.
-- **Verification**: the kind (unit test, integration test on hardware, review, analysis) and what exactly it must confirm. A risk control measure gets verification of its effectiveness, not only of its presence.
+- **Funkcja bezpieczeństwa** lub **środek kontroli ryzyka**: nazwa i identyfikator z analizy ryzyka projektu (gdy projekt ją prowadzi) oraz wpływ zmiany (nowy środek, zmiana istniejącego, zmiana jego otoczenia).
+- **Element SOUP**: nowa biblioteka zewnętrzna albo zmiana wersji istniejącej. Nazwa, wersja, powód wyboru. Nowy element SOUP wymaga oceny i wpisu na listę SOUP projektu, zanim trafi do kodu.
+- **Weryfikacja**: rodzaj (test jednostkowy, test integracyjny na sprzęcie, przegląd, analiza) i co dokładnie ma potwierdzić. Środek kontroli ryzyka dostaje weryfikację skuteczności, nie tylko obecności.
 
-When the project keeps a list of safety functions or risks, compare the affected area against it before deciding that the task does not touch safety.
+Gdy projekt prowadzi listę funkcji bezpieczeństwa lub ryzyk, porównaj z nią obszar zmiany, zanim uznasz, że zadanie nie dotyka bezpieczeństwa.
