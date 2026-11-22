@@ -11,11 +11,11 @@ Ten skill wytwarza tylko treść. Gałęzie, zapis do trackera i workflow należ
 
 ## Kroki
 
-1. **Zbierz.** Weź wszystko, co opisuje zadanie: rozmowę, wklejony tekst, a gdy dostajesz link lub `CU-<id>`, samo zadanie z trackera (tylko odczyt). Przeczytaj konwencje projektu (CLAUDE.md, AGENTS.md); zob. *Konwencje projektu*. W repozytorium wyślij subagenta po fakty: obszar zmiany, słownictwo domeny, istniejące moduły i testy, szacunek rozmiaru zmiany. Gdy zachodzi któryś warunek z *Powiązań*, przeczytaj [`REGULATED.md`](REGULATED.md). Gotowe, gdy znasz zachowanie, jego odbiorcę i obowiązujące konwencje.
+1. **Zbierz.** Weź wszystko, co opisuje zadanie: rozmowę, wklejony tekst, a gdy dostajesz link lub ID zadania, samo zadanie z trackera (tylko odczyt). Przeczytaj konwencje projektu (CLAUDE.md, AGENTS.md); zob. *Konwencje projektu*. W repozytorium, gdy obszaru lub rozmiaru zmiany nie da się ustalić z rozmowy, wyślij subagenta po fakty: obszar zmiany, słownictwo domeny, istniejące moduły i testy, szacunek rozmiaru zmiany. Gdy zachodzi któryś warunek z *Powiązań*, przeczytaj [`REGULATED.md`](REGULATED.md). Gotowe, gdy znasz zachowanie, jego odbiorcę i obowiązujące konwencje.
 2. **Wytnij wycinek.** Nazwij zachowania, które niesie materiał, i zastosuj *Rozmiar zadania*. Przy więcej niż jednym wycinku ułóż listę w kolejności realizacji i kontynuuj z pierwszym. Gotowe, gdy masz jeden wycinek mieszczący się we wszystkich limitach.
-3. **Napisz** tytuł i sekcje według *Tytułu zadania* i *Sekcji*. Szczegóły techniczne z rozmowy przenieś do *Notatek do implementacji*, a ich cel wyraź w kryterium.
-4. **Sprawdź** każde kryterium wszystkimi testami z *Kryteriów akceptacji*, a cały wycinek limitami z *Rozmiaru zadania*. Kryterium, które oblewa test, przepisz albo usuń. Gotowe, gdy każde kryterium przechodzi każdy test.
-5. **Dostarcz** według *Wyniku*. Fakty sprawdzaj sam; decyzje, których nie da się ustalić (odbiorca, korzyść, granica zakresu, czy zadanie dotyka bezpieczeństwa), oznacz w treści jako `?` i zadaj w notatce jedną numerowaną paczką, każde pytanie z rekomendacją. Po odpowiedziach popraw treść i dostarcz ją ponownie.
+3. **Napisz** tytuł i sekcje według *Tytułu zadania* i *Sekcji*. Szczegóły techniczne z rozmowy przenieś do *Notatek do implementacji*, a ich cel wyraź w kryterium. Przy poprawianiu istniejącego zadania nic z oryginału nie znika po cichu: każda informacja (linki, załączniki, ustalenia z komentarzy) trafia do którejś sekcji albo na listę zmian w notatce jako usunięta, z powodem.
+4. **Sprawdź** każde kryterium wszystkimi testami z *Kryteriów akceptacji*, a cały wycinek limitami z *Rozmiaru zadania*. Kryterium, które oblewa test, przepisz albo usuń. Sprawdź też spójność tytułu z kryteriami: odpowiedź „tak” na pytanie kontrolne tytułu wynika z kryteriów wziętych razem. Gdy nie wynika, popraw tytuł albo kryteria, zależnie od tego, które rozmija się z wycinkiem. Gotowe, gdy każde kryterium przechodzi każdy test, a kryteria odpowiadają na pytanie kontrolne.
+5. **Dostarcz** według *Wyniku*. Fakty sprawdzaj sam; decyzje, których nie da się ustalić (odbiorca, korzyść, granica zakresu, a w projekcie związanym z bezpieczeństwem także to, czy zadanie dotyka bezpieczeństwa), oznacz w treści jako `?` i zadaj w notatce jedną numerowaną paczką, każde pytanie z rekomendacją. Po odpowiedziach popraw treść i dostarcz ją ponownie.
 
 ## Rozmiar zadania
 
@@ -36,10 +36,10 @@ Przy podziale dostarcz listę wycinków (nazwa i jedno zdanie, w kolejności rea
 
 Rdzeń tytułu pochodzi ze skilla `task-title` (rdzeń, typ, pytanie kontrolne). Prefiksy wokół rdzenia dodaj według konwencji projektu; domyślnie Conventional Commits:
 
-`<type>[(<scope>)][!]: [CU-<id>] <rdzeń>`
+`<type>[(<scope>)][!]: <rdzeń>`
 
 - `scope` to domena funkcjonalna systemu (`sensor`, `comm`, `power`); nazwa pliku czy warstwy się nie nadaje. Gdy nie wynika z materiału, zaproponuj ją w notatce.
-- Wstaw `[CU-<id>]`, gdy ID jest znane; zadanie jeszcze nieutworzone ma tytuł bez niego.
+- ID zadania pojawia się w tytule tylko wtedy, gdy konwencja projektu określa jego format i miejsce (np. `[CU-<id>]` przed rdzeniem); wstaw je, gdy jest znane, a zadanie jeszcze nieutworzone ma tytuł bez niego. Bez takiej konwencji tytuł nie ma ID i nie pytaj o nie.
 - `type` według `cliff.toml` projektu; domyślnie `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `build`, `ci`, `chore`. `!` oznacza zmianę niekompatybilną.
 - `fix`, gdy kod miał robić X i robił to źle. `feat`, gdy ma robić Y zamiast X, także gdy stare zachowanie było świadomą decyzją (wtedy często `feat!`).
 
@@ -51,7 +51,9 @@ Rdzeń tytułu pochodzi ze skilla `task-title` (rdzeń, typ, pytanie kontrolne).
 
 ### Historyjka
 
-Jedna historyjka: „Jako [rola] chciałbym, aby [zachowanie], co umożliwi mi [korzyść].” Po angielsku: "As a [role], I want [behaviour], so that [benefit]." Rola to aktor z domeny: użytkownik, terapeuta, urządzenie, inny węzeł systemu, developer. Zachowanie i korzyść językiem domeny („pomiar temperatury”, „wykrycie, że węzeł żyje”). Jedno zdanie; dłuższa historyjka niesie materiał na kryteria albo notatki.
+Jedna historyjka: „Jako [rola] chcę, aby [zachowanie], co umożliwi mi [korzyść].” Po angielsku: "As a [role], I want [behaviour], so that [benefit]." Rola to aktor z domeny: użytkownik, terapeuta, urządzenie, inny węzeł systemu, developer. Zachowanie i korzyść językiem domeny („pomiar temperatury”, „wykrycie, że węzeł żyje”). Jedno zdanie; dłuższa historyjka niesie materiał na kryteria albo notatki.
+
+Obowiązkowa w `feat`, `fix` i `perf`. W zadaniach inżynierskich (`build`, `ci`, `chore`, `refactor`, `docs`) opcjonalna: pomiń ją, gdy jedyną rolą byłby developer, a korzyść powtarzałaby *Cel*.
 
 ### Kryteria akceptacji
 
@@ -85,7 +87,9 @@ Opcjonalna. Ustalenia techniczne z rozmowy, których wykonawca potrzebuje, a nie
 
 ### Bezpieczeństwo
 
-Domyślnie włączona, warunkowa: obecna, gdy zadanie dotyka funkcji bezpieczeństwa, środka kontroli ryzyka albo elementu SOUP. Nazywa ten element i wymaganą weryfikację. Gdy z materiału nie wynika, czy zadanie dotyka czegoś takiego, zapisz to jako `Do potwierdzenia: …` (w języku treści, po angielsku `To confirm: …`) i zapytaj w notatce. Projekt może wyłączyć sekcję (zob. *Konwencje projektu*).
+Tylko w projekcie związanym z bezpieczeństwem: gdy CLAUDE.md projektu deklaruje związek z bezpieczeństwem albo traceability (zob. *Konwencje projektu*), albo gdy użytkownik podał identyfikator ryzyka lub funkcji bezpieczeństwa. W innych projektach sekcji nie ma i nie pytaj o bezpieczeństwo.
+
+W takim projekcie sekcja jest obecna, gdy zadanie dotyka funkcji bezpieczeństwa, środka kontroli ryzyka albo elementu SOUP. Nazywa ten element i wymaganą weryfikację. Gdy z materiału nie wynika, czy zadanie dotyka czegoś takiego, zapisz to jako `Do potwierdzenia: …` (w języku treści, po angielsku `To confirm: …`) i zapytaj w notatce.
 
 ### Powiązania
 
@@ -100,8 +104,9 @@ CLAUDE.md projektu nadpisuje domyślne ustawienia tego skilla. Może:
 
 - dodać sekcje do treści zadania; wypełniaj je według konwencji, podając tylko znane identyfikatory,
 - wyłączyć Conventional Commits albo zmienić format tytułu,
+- określić format ID zadania i jego miejsce w tytule,
 - zmienić próg rozmiaru zmiany,
-- oznaczyć projekt jako niezwiązany z bezpieczeństwem, co wyłącza sekcję *Bezpieczeństwo*,
+- zadeklarować związek projektu z bezpieczeństwem (np. wyrób medyczny), co włącza sekcję *Bezpieczeństwo*,
 - ustalić język treści; bez takiej konwencji treść jest w języku rozmowy.
 
 ## Wynik
@@ -111,6 +116,6 @@ W języku rozmowy, w tej kolejności:
 1. **Wycinki** (tylko przy podziale): numerowana lista, nazwa i jedno zdanie każdy.
 2. **Tytuł zadania**: jedna linia z prefiksami, w bloku kodu.
 3. **Opis**: blok markdown z nagłówkami `##` w tej kolejności: Cel, Historyjka, Kryteria akceptacji, Poza zakresem, Notatki do implementacji, Bezpieczeństwo, Powiązania. Nagłówki w języku treści (po angielsku: Goal, User story, Acceptance criteria, Out of scope, Implementation notes, Safety, Links). Sekcje opcjonalne tylko wtedy, gdy mają treść.
-4. **Notatka** (poza blokami, nie do trackera): pytanie kontrolne tytułu; przy poprawianiu istniejącego zadania krótka lista, co się zmieniło i dlaczego; numerowane decyzje do podjęcia, z rekomendacjami.
+4. **Notatka** (poza blokami, nie do trackera): pytanie kontrolne tytułu; przy poprawianiu istniejącego zadania krótka lista, co się zmieniło i dlaczego, łącznie z tym, co usunięto z oryginału; numerowane decyzje do podjęcia, z rekomendacjami.
 
 Gdy ten skill wywołał inny skill, zwróć tylko tytuł, opis i decyzje do podjęcia.
