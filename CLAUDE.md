@@ -5,7 +5,7 @@ Personal Claude Code plugin marketplace with two plugins: `dziebowski-skills` (s
 ## Conventions
 
 - Skills go in `plugins/dziebowski-skills/skills/<name>/SKILL.md`; hooks are registered in `plugins/dziebowski-hooks/hooks/hooks.json` and call scripts in `hooks/scripts/` via `"${CLAUDE_PLUGIN_ROOT}/..."` (quoted).
-- Skill names are English kebab-case. Skill content may be English or Polish, one language per skill, no parallel `-pl`/`-en` variants.
+- Skill names are English kebab-case. Skill content (SKILL.md body and supporting files) is in Polish; the frontmatter `description` stays in English. No parallel `-pl`/`-en` variants. English terms of art get a Polish equivalent with the English term in parentheses on first use.
 - Never commit company names, internal system names, hosts, credentials or other sensitive data. Machine- or employer-specific values go in `userConfig` in plugin.json (`sensitive: true` for secrets); hook scripts read them from `CLAUDE_PLUGIN_OPTION_<KEY>`.
 - Skills must also work in claude.ai: no top-level `bin/` in `dziebowski-skills`, and don't depend on Claude Code-only features without need.
 - Each plugin has a semver `version` in plugin.json (started at 0.1.0). Bump it in every release that changes that plugin: installs update only when the version changes. Patch for fixes, minor for new or changed skills/hooks.
