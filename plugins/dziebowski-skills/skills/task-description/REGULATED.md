@@ -29,6 +29,4 @@ Sekcja nazywa to, czego zadanie dotyka, i wymaganą weryfikację:
 - **Element SOUP**: nowa biblioteka zewnętrzna albo zmiana wersji istniejącej. Nazwa, wersja, powód wyboru. Nowy element SOUP wymaga oceny i wpisu na listę SOUP projektu, zanim trafi do kodu.
 - **Weryfikacja**: rodzaj (test jednostkowy, test integracyjny na sprzęcie, przegląd, analiza) i co dokładnie ma potwierdzić. Środek kontroli ryzyka dostaje weryfikację skuteczności, nie tylko obecności.
 
-Środka kontroli ryzyka nie dziel między wycinki. Wykrycie i reakcja (np. przejście w stan bezpieczny) idą razem, bo dopiero razem tworzą środek, którego skuteczność da się zweryfikować. Gdy całość nie mieści się w limitach *Rozmiaru zadania*, uprość sam środek (np. najprostsza reakcja), zamiast odcinać reakcję.
-
 Gdy projekt prowadzi listę funkcji bezpieczeństwa lub ryzyk, porównaj z nią obszar zmiany, zanim uznasz, że zadanie nie dotyka bezpieczeństwa.

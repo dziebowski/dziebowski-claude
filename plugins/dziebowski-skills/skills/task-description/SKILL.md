@@ -93,6 +93,8 @@ Tylko w projekcie związanym z bezpieczeństwem: gdy CLAUDE.md projektu deklaruj
 
 W takim projekcie sekcja jest obecna, gdy zadanie dotyka funkcji bezpieczeństwa, środka kontroli ryzyka albo elementu SOUP. Nazywa ten element i wymaganą weryfikację. Gdy z materiału nie wynika, czy zadanie dotyka czegoś takiego, zapisz to jako `Do potwierdzenia: …` (w języku treści, po angielsku `To confirm: …`) i zapytaj w notatce.
 
+Środka kontroli ryzyka nie dziel między wycinki. Wykrycie i reakcja (np. przejście w stan bezpieczny) idą razem, bo dopiero razem tworzą środek, którego skuteczność da się zweryfikować. Gdy całość nie mieści się w limitach *Rozmiaru zadania*, uprość sam środek (np. najprostsza reakcja), zamiast odcinać reakcję.
+
 ### Powiązania
 
 Obecna tylko w projekcie regulowanym. Przeczytaj [`REGULATED.md`](REGULATED.md), gdy:
