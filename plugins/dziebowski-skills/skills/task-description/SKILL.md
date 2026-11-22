@@ -5,7 +5,7 @@ description: Write or refine the body of a development task for a tracker (goal,
 
 # Opis zadania
 
-Treść zadania opisuje **wynik**: co jest prawdą po wykonaniu zadania, widziane z zewnątrz. Sposób dojścia wybiera wykonawca; ustalenia techniczne z rozmowy dostają własną, osobną sekcję. Jedno zadanie to jeden **wycinek** (vertical slice): jedno obserwowalne zachowanie z przypadkami brzegowymi, od wejścia do efektu, w rozmiarze jednego MR do przejrzenia.
+Treść zadania opisuje **wynik**: co jest prawdą po wykonaniu zadania, widziane z zewnątrz. Sposób dojścia wybiera wykonawca; ustalenia techniczne z rozmowy dostają własną, osobną sekcję. Jedno zadanie to jeden **wycinek** (vertical slice): jedno obserwowalne zachowanie z przypadkami brzegowymi, od wejścia do efektu u odbiorcy, w rozmiarze jednego MR do przejrzenia.
 
 Ten skill wytwarza tylko treść. Gałęzie, zapis do trackera i workflow należą do innych skilli.
 
@@ -15,17 +15,18 @@ Ten skill wytwarza tylko treść. Gałęzie, zapis do trackera i workflow należ
 2. **Wytnij wycinek.** Nazwij zachowania, które niesie materiał, i zastosuj *Rozmiar zadania*. Przy więcej niż jednym wycinku ułóż listę w kolejności realizacji i kontynuuj z pierwszym. Gotowe, gdy masz jeden wycinek mieszczący się we wszystkich limitach.
 3. **Napisz** tytuł i sekcje według *Tytułu zadania* i *Sekcji*. Szczegóły techniczne z rozmowy przenieś do *Notatek do implementacji*, a ich cel wyraź w kryterium. Przy poprawianiu istniejącego zadania nic z oryginału nie znika po cichu: każda informacja (linki, załączniki, ustalenia z komentarzy) trafia do którejś sekcji albo na listę zmian w notatce jako usunięta, z powodem.
 4. **Sprawdź** każde kryterium wszystkimi testami z *Kryteriów akceptacji*, a cały wycinek limitami z *Rozmiaru zadania*. Kryterium, które oblewa test, przepisz albo usuń. Sprawdź też spójność tytułu z kryteriami: odpowiedź „tak” na pytanie kontrolne tytułu wynika z kryteriów wziętych razem. Gdy nie wynika, popraw tytuł albo kryteria, zależnie od tego, które rozmija się z wycinkiem. Gotowe, gdy każde kryterium przechodzi każdy test, a kryteria odpowiadają na pytanie kontrolne.
-5. **Dostarcz** według *Wyniku*. Fakty sprawdzaj sam; decyzje, których nie da się ustalić (odbiorca, korzyść, granica zakresu, a w projekcie związanym z bezpieczeństwem także to, czy zadanie dotyka bezpieczeństwa), oznacz w treści jako `?` i zadaj w notatce jedną numerowaną paczką, każde pytanie z rekomendacją. Po odpowiedziach popraw treść i dostarcz ją ponownie.
+5. **Dostarcz** według *Wyniku*. Fakty sprawdzaj sam; fakt, którego nie da się sprawdzić (brak dostępu, treść załącznika, nieznany adres), oznacz w treści jako `?` i zapytaj o niego w notatce z dopiskiem „fakt”. Kryterium z `?` w miejscu wartości to poprawny szkic do czasu odpowiedzi. Decyzje, których nie da się ustalić (odbiorca, korzyść, granica zakresu, a w projekcie związanym z bezpieczeństwem także to, czy zadanie dotyka bezpieczeństwa), oznacz w treści jako `?` i zadaj w notatce jedną numerowaną paczką, każde pytanie z rekomendacją. Po odpowiedziach popraw treść i dostarcz ją ponownie.
 
 ## Rozmiar zadania
 
 Limity są twarde; przekroczenie któregoś oznacza podział, bez pytania o zgodę:
 
 - Od 1 do 5 kryteriów. Szóste kryterium oznacza drugi wycinek. Jedno kryterium wystarcza, gdy niesie całe zachowanie (często w `fix`); nigdy nie dopisuj kryterium dla liczby.
-- Każde kryterium dotyczy zachowania tego wycinka. Zachowanie **niezależne**, które da się dostarczyć i sprawdzić bez pozostałych, to osobny wycinek.
-- Zachowanie bez odbiorcy w tym wycinku (obsługę przypadku, którego nic jeszcze nie wyzwala) przenieś do wycinka, który wprowadza jego odbiorcę.
+- Każde kryterium dotyczy zachowania tego wycinka. Zachowanie **niezależne**, które ma własnego odbiorcę i da się je dostarczyć i sprawdzić bez pozostałych, to osobny wycinek.
+- Wycinek prowadzi od wejścia do efektu u odbiorcy, także przez kilka komponentów lub węzłów (nadawca i odbiorca protokołu, obraz buildu i job CI, który go używa). Część ścieżki, którą da się sprawdzić tylko harnessem testowym, nie jest osobnym wycinkiem.
+- Zachowanie bez odbiorcy w tym wycinku (obsługę przypadku, którego nic jeszcze nie wyzwala) przenieś do wycinka, który wprowadza jego odbiorcę. Tak samo przypadek brzegowy: reakcja na sytuację, którą tworzy dopiero inne zachowanie (odrzucenie żądania w trakcie nawiązywania połączenia), należy do wycinka, który wprowadza to zachowanie.
 - Zadanie dotykające więcej niż jednej domeny (`scope`) podziel według domen.
-- Nowy moduł zaczyna się od **pocisku smugowego** (tracer bullet): moduł istnieje, ma publiczny interfejs i niesie jedno najprostsze zachowanie od wejścia do efektu, z testem. Każdy kolejny wycinek dodaje jedno zachowanie (obsługę błędów, kolejny tryb, konfigurację).
+- Nowy moduł zaczyna się od **pocisku smugowego** (tracer bullet): moduł istnieje, ma publiczny interfejs i niesie jedno najprostsze zachowanie od wejścia do efektu u odbiorcy, z testem. Gdy pełna ścieżka przekracza limity, skróć zachowanie, nie ścieżkę (np. wykrycie utraty łączności bez reakcji na nią). Każdy kolejny wycinek dodaje jedno zachowanie (obsługę błędów, kolejny tryb, konfigurację).
 - W repozytorium: szacunek powyżej ~400 zmienionych linii, razem z testami, oznacza podział.
 
 Sygnał, by jeszcze raz przyjrzeć się wycinkowi: 3 lub więcej kryteriów `TEST:`. Każde oznacza kod testu, więc razem zwykle zdradzają dwa zachowania w jednym zadaniu.
@@ -38,10 +39,11 @@ Rdzeń tytułu pochodzi ze skilla `task-title` (rdzeń, typ, pytanie kontrolne).
 
 `<type>[(<scope>)][!]: <rdzeń>`
 
-- `scope` to domena funkcjonalna systemu (`sensor`, `comm`, `power`); nazwa pliku czy warstwy się nie nadaje. Gdy nie wynika z materiału, zaproponuj ją w notatce.
+- `scope` to domena funkcjonalna systemu (`sensor`, `comm`, `power`); nazwa pliku czy warstwy się nie nadaje. Gdy nie wynika z materiału, wstaw w tytule zaproponowaną domenę i zgłoś ją w notatce do potwierdzenia. Zadanie infrastrukturalne bez domeny funkcjonalnej (CI, obraz buildu, zależności) ma tytuł bez scope, chyba że projekt definiuje scope dla infrastruktury.
 - ID zadania pojawia się w tytule tylko wtedy, gdy konwencja projektu określa jego format i miejsce (np. `[CU-<id>]` przed rdzeniem); wstaw je, gdy jest znane, a zadanie jeszcze nieutworzone ma tytuł bez niego. Bez takiej konwencji tytuł nie ma ID i nie pytaj o nie.
 - `type` według `cliff.toml` projektu; domyślnie `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `build`, `ci`, `chore`. `!` oznacza zmianę niekompatybilną.
 - `fix`, gdy kod miał robić X i robił to źle. `feat`, gdy ma robić Y zamiast X, także gdy stare zachowanie było świadomą decyzją (wtedy często `feat!`).
+- Gdy wynik nazwany w tytule (albo typ) zależy od otwartej decyzji, tytuł zakłada rekomendowaną odpowiedź, a notatka podaje numer decyzji, od której zależy.
 
 ## Sekcje
 
@@ -75,7 +77,7 @@ Przykłady, pary przed → po:
 - „Moduł wywołuje `crc32c()` na buforze ramki” → „TEST: Każdy heartbeat niesie poprawne CRC-32C (wektor "123456789" → E3069283)”.
 - „Build działa” → usunięte; nie jest wyróżniające.
 - „Poprawione zaokrąglanie w liczeniu sumy” → „TEST: Faktura z pozycjami 10,00 i 5,00 i rabatem 15% pokazuje sumę 12,75”.
-- „TEST: Koder ramek obsługuje wszystkie wzorce, a nadajnik odrzuca ramkę w trakcie nadawania” → dwa zachowania, dwa wycinki.
+- „TEST: Koder ramek obsługuje wszystkie wzorce, a nadajnik odrzuca ramkę w trakcie nadawania” → dwa zachowania, każde z własnym odbiorcą, więc dwa wycinki.
 
 ### Poza zakresem
 
