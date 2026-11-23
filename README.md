@@ -14,7 +14,7 @@ Prywatny marketplace pluginów Claude Code — jedno miejsce na moje skille i ho
 | Skill | Do czego |
 |---|---|
 | `task-title` | tytuł taska/issue/PR nazywający weryfikowalny efekt zmiany, poprawny bez zmian w trackerze, changelogu i temacie commita |
-| `task-description` | treść zadania do trackera (cel z rolą odbiorcy, kryteria akceptacji) opisująca efekt, przycięta do jednego wycinka; tryb dla projektów regulowanych (relacje SLR/SI/SU, bezpieczeństwo w kryteriach) |
+| `task-description` | treść zadania do trackera (cel z rolą odbiorcy, kryteria akceptacji) opisująca efekt, przycięta do jednego vertical slice; tryb dla projektów regulowanych (relacje SLR/SI/SU, bezpieczeństwo w kryteriach) |
 
 ## Struktura
 

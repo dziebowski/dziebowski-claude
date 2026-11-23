@@ -1,27 +1,26 @@
 # Projekt regulowany
 
-Część skilla [`task-description`](SKILL.md) dla projektów wymagających traceability (np. według IEC 62304) albo prowadzących własną listę funkcji bezpieczeństwa i ryzyk. Rozszerza *Relacje* i *Projekt związany z bezpieczeństwem*; konwencja projektu (identyfikatory, placeholdery, format) nadpisuje ten plik.
+Rozszerzenie skilla [`task-description`](SKILL.md) o traceability (np. według IEC 62304) i listę funkcji bezpieczeństwa lub ryzyk. Uzupełnia *Relacje* i *Bezpieczeństwo*. Konwencja projektu (identyfikatory, placeholdery, format) nadpisuje ten plik.
 
 ## Relacje traceability
 
-Identyfikatory nie trafiają do treści zadania; idą na listę *Relacji*, do ustawienia w trackerze:
+Identyfikatory trafiają na listę relacji, nie do treści:
 
 - **SLR** (System Level Requirement): wymaganie systemowe, z którego wynika zadanie. Zawsze obecne.
 - **SI** (Software Item): element oprogramowania, gdy zmiana dotyczy całego modułu lub komponentu.
-- **SU** (Software Unit): jednostka oprogramowania, gdy zmiana dotyczy wyodrębnionej jednostki wewnątrz modułu.
-- SI i SU razem, gdy zadanie tworzy nową SU w istniejącym SI.
-- **Ryzyko lub funkcja bezpieczeństwa**: identyfikator z analizy ryzyka projektu, gdy zadanie dotyka funkcji bezpieczeństwa albo środka kontroli ryzyka.
+- **SU** (Software Unit): jednostka oprogramowania, gdy zmiana dotyczy wyodrębnionej jednostki wewnątrz modułu. SI i SU razem, gdy zadanie tworzy nową SU w istniejącym SI.
+- **Ryzyko lub funkcja bezpieczeństwa**: identyfikator z analizy ryzyka projektu, gdy zadanie ich dotyka.
 
-Identyfikatory:
+Źródła identyfikatorów:
 
-- Wpisuj tylko identyfikatory podane przez użytkownika albo odczytane z repozytorium lub trackera.
-- Brakujący identyfikator istniejącego elementu zapisz na liście jako `?` i zapytaj o niego w notatce z prefiksem „Fakt:”. Lukę w traceability zgłaszasz, nie zgadujesz.
-- Element, który zadanie dopiero tworzy, dostaje placeholder z konwencji projektu (np. `PRJ-SU-????`). Numer nadaje się w trakcie implementacji, według zasad projektu.
+- Identyfikator pochodzi od użytkownika, z repozytorium albo z trackera.
+- Brakujący identyfikator istniejącego elementu to fakt do uzupełnienia: na liście relacji `?`.
+- Element, który zadanie tworzy, dostaje placeholder z konwencji projektu (np. `PRJ-SU-????`); numer nadaje się w trakcie implementacji.
 
-Kilka SU w jednym zadaniu to sygnał rozmiaru, jak kilka domen: sprawdź, czy zadanie niesie jeden wycinek.
+Kilka SU w jednym zadaniu to sygnał, że vertical slice łamie R2 albo R5.
 
 ## Weryfikacja
 
-Rodzaj weryfikacji wynika z kryterium: `TEST:` oznacza test automatyczny. Gdy projekt wymaga wskazania innego rodzaju (test integracyjny na sprzęcie, przegląd, analiza), dopisz go w nawiasie na końcu kryterium, np. „(test na sprzęcie)”.
+`TEST:` oznacza test automatyczny. Gdy projekt wymaga wskazania innego rodzaju weryfikacji (test integracyjny na sprzęcie, przegląd, analiza), rodzaj stoi w nawiasie na końcu kryterium, np. „(test na sprzęcie)”.
 
 Gdy projekt prowadzi listę funkcji bezpieczeństwa lub ryzyk, porównaj z nią obszar zmiany, zanim uznasz, że zadanie nie dotyka bezpieczeństwa.
